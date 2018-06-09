@@ -1,2 +1,10 @@
+
 # IDEs and editors
-/.config
+.idea/
+
+
+# config files
+config/
+services/client_secret.json
+services/client_secret_old.json
+services/credentials.json
