@@ -24,11 +24,12 @@ exports.getInvetorsList = async function getInvestorsList(){
 
 exports.addInvestor = async function addInvestor(investor){
     console.log('Add investor service');
+    console.log(investor);
     let newInvestor = new Investors({
         investorFirstName:investor.firstName,
         investorLastName:investor.lastName,
         investorCellPhoneNumber:investor.cellPhone,
-        investorOfficePhoneNumber:investor.officeOhone,
+        investorOfficePhoneNumber:investor.officePhone,
         investorAddress:investor.address,
         investorEmail:investor.email,
         investorBirthDate:investor.birthDate,
