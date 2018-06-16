@@ -5,9 +5,24 @@ const Dropbox = require('dropbox').Dropbox;
 const path = require('path');
 var config = require('../config/globalConf');
 const APP_KEY = config.token;
+var mongoose = require('mongoose');
+var Config = require ('../model/config');
 
+ function getAPI(){
+
+    try{
+
+        console.log('trying to get API');
+        let config =  Config.find({});
+        console.log(config.db.collection('Config'));
+    }
+    catch(error){
+        return Error('error while trying to find investor ' + error.message);
+    }
+}
 
 exports.getFileList = async function () {
+    getAPI();
     let dbx = new Dropbox({ accessToken: APP_KEY });
         let res = await dbx.filesListFolder({path: ''})
         .then(function(response) {

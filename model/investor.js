@@ -3,22 +3,22 @@ var mongoosePaginate = require('mongoose-paginate');
 var Project = require('./project.model');
 
 var InvestorSchema =new mongoose.Schema({
-    investorFirstName:String,
-    investorLastName:String,
-    investorCellPhoneNumber:String,
-    investorOfficePhoneNumber:String,
-    investorAddress:String,
-    investorEmail:String,
-    investorBirthDate:Date,
-    investorPicture:String,
-    investorCompany:String,
-    investorRole:String,
-    investorFiles:[{name:String}],
-    investorJoinDate:Date,
-    investorRank:Number,
+    firstName:String,
+    lastName:String,
+    cellPhoneNumber:String,
+    officePhoneNumber:String,
+    address:String,
+    email:String,
+    birthDate:Date,
+    picture:String,
+    company:String,
+    role:String,
+    //Files:[{name:String}],
+    joinDate:Date,
+    rank:Number,
     //investorAssociatedProjects:[Project],
-    investorComments:String,
-    investorRecuriter:String
+    comments:String,
+    recuriter:String
 
 
 });
