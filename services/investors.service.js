@@ -2,8 +2,8 @@ var Investors = require ('../model/investor');
 var mongoose = require('mongoose');
 _this = this;
 
-
-exports.getInvetorsList = async function getInvestorsList(){
+//get list of all investors
+exports.getInvetorsList = async function getInvestorsList(query,page,limit){
     //mongoos paginate settings
 
     var options = {
@@ -12,8 +12,8 @@ exports.getInvetorsList = async function getInvestorsList(){
     }
 
     try{
-        console.log(query);
-        let investors = await Investors.paginate(query,options);
+
+        let investors = await Investors.paginate({},options);
         return investors;
     }
 
@@ -22,26 +22,27 @@ exports.getInvetorsList = async function getInvestorsList(){
     }
 }
 
+//add single investor
 exports.addInvestor = async function addInvestor(investor){
     console.log('Add investor service');
     console.log(investor);
     let newInvestor = new Investors({
-        investorFirstName:investor.firstName,
-        investorLastName:investor.lastName,
-        investorCellPhoneNumber:investor.cellPhone,
-        investorOfficePhoneNumber:investor.officePhone,
-        investorAddress:investor.address,
-        investorEmail:investor.email,
-        investorBirthDate:investor.birthDate,
-        investorPicture:investor.picture,
-        investorCompany:investor.company,
-        investorRole:investor.role,
+        firstName:investor.firstName,
+        lastName:investor.lastName,
+        cellPhoneNumber:investor.cellPhone,
+        officePhoneNumber:investor.officePhone,
+        address:investor.address,
+        email:investor.email,
+        birthDate:investor.birthDate,
+        picture:investor.picture,
+        company:investor.company,
+        role:investor.role,
         //investorFiles:[{name:String}],
-        investorJoinDate:investor.joinDate,
-        investorRank:investor.rank,
+        joinDate:investor.joinDate,
+        rank:investor.rank,
         //investorAssociatedProjects:[Project],
-        investorComments:investor.comment,
-        investorRecuriter:investor.recruiter
+        comments:investor.comment,
+        recuriter:investor.recruiter
     })
 
     try {
@@ -50,5 +51,18 @@ exports.addInvestor = async function addInvestor(investor){
     }
     catch (e) {
         throw new Error('Error while trying to save investor information to the data base' + e.message);
+    }
+}
+
+
+//get single investor information
+exports.getInvestorData = async function getInvestor(id){
+
+    try{
+        let investor = await Investors.findById(id);
+        return investor;
+    }
+    catch(error){
+        return Error('error while trying to find investor ' + error.message);
     }
 }

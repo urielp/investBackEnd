@@ -7,6 +7,7 @@ _this=this
 //add new investor to db(controller
 exports.addInvestor = async function addInvestor(req,res,next){
     console.log('Add investor controller');
+    console.log(req.body);
     let newInvestor = req.body;
     try{
         let createdInvestor = await investorsService.addInvestor(newInvestor);
@@ -26,5 +27,45 @@ exports.addInvestor = async function addInvestor(req,res,next){
                 data:{},
                 message:'Somthing went wrong' + error.message
             })
+    }
+}
+
+
+//get investor data
+exports.findInvestor=async function findInvestor(req,res,next){
+    try{
+        let investorResult = await investorsService.getInvestorData(req.id);
+        return res.status(200)
+            .json({
+                success:true,
+                data:investorResult,
+                message:'Investor was found'
+            })
+
+    }
+    catch(error){
+        return res
+            .status(400)
+            .json({
+                success:false,
+                data:{},
+                message:'no such investor!' + error.message
+            })
+    }
+}
+
+//get investors list
+
+exports.getInvestorsList = async function getInvestorsList(req,res,next){
+
+    let page = req.query.page ? req.query.page : 1;
+    let limit = req.query.limit ? req.query.limit : 10;
+    try {
+        let expenses = await investorsService.getInvetorsList({},page,limit);
+
+        return res.status(200).json({success:true,data:expenses,message:'Successfully received  list'});
+    }
+    catch(exception){
+        return res.status(400).json({success:false,data:{},message:exception.message});
     }
 }
