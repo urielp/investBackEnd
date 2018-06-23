@@ -59,7 +59,9 @@ exports.addInvestor = async function addInvestor(investor){
 exports.getInvestorData = async function getInvestor(id){
 
     try{
+        console.log("finding single investor by id : " + id);
         let investor = await Investors.findById(id);
+        console.log(investor);
         return investor;
     }
     catch(error){

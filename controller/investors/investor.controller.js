@@ -34,7 +34,8 @@ exports.addInvestor = async function addInvestor(req,res,next){
 //get investor data
 exports.findInvestor=async function findInvestor(req,res,next){
     try{
-        let investorResult = await investorsService.getInvestorData(req.id);
+        console.log("Parameters from request : " + req.params.id)
+        let investorResult = await investorsService.getInvestorData(req.params.id);
         return res.status(200)
             .json({
                 success:true,
