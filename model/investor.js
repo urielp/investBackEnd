@@ -18,7 +18,8 @@ var InvestorSchema =new mongoose.Schema({
     rank:Number,
     //investorAssociatedProjects:[Project],
     comments:String,
-    recuriter:String
+    commentsTest:[{comment:String,name:String,date:Date}],
+    recruiter:String
 
 
 });

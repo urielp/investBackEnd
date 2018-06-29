@@ -42,6 +42,7 @@ exports.addInvestor = async function addInvestor(investor){
         rank:investor.rank,
         //investorAssociatedProjects:[Project],
         comments:investor.comment,
+        commentsTest:investor.commentsTest,
         recuriter:investor.recruiter
     })
 
