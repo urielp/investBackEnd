@@ -9,9 +9,8 @@ exports.getInvetorsList = async function getInvestorsList(query,page,limit){
     var options = {
         page,
         limit
-    }
-
-    try{
+    };
+      try{
 
         let investors = await Investors.paginate({},options);
         return investors;
@@ -24,8 +23,6 @@ exports.getInvetorsList = async function getInvestorsList(query,page,limit){
 
 //add single investor
 exports.addInvestor = async function addInvestor(investor){
-    console.log('Add investor service');
-    console.log(investor);
     let newInvestor = new Investors({
         firstName:investor.firstName,
         lastName:investor.lastName,
@@ -58,11 +55,8 @@ exports.addInvestor = async function addInvestor(investor){
 
 //get single investor information
 exports.getInvestorData = async function getInvestor(id){
-
     try{
-        console.log("finding single investor by id : " + id);
         let investor = await Investors.findById(id);
-        console.log(investor);
         return investor;
     }
     catch(error){

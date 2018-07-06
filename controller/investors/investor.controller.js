@@ -58,9 +58,8 @@ exports.findInvestor=async function findInvestor(req,res,next){
 //get investors list
 
 exports.getInvestorsList = async function getInvestorsList(req,res,next){
-
-    let page = req.query.page ? req.query.page : 1;
-    let limit = req.query.limit ? req.query.limit : 20;
+    let page = req.params.page ? req.params.page  : 1;
+    let limit = req.params.limit ? req.params.limit  : 12;
     try {
         let expenses = await investorsService.getInvetorsList({},page,limit);
 
