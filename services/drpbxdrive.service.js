@@ -3,23 +3,23 @@ const readline = require('readline');
 const iso = require('isomorphic-fetch');
 const Dropbox = require('dropbox').Dropbox;
 const path = require('path');
-var config = require('../config/globalConf');
+var config = require('../localConfig/localConfig');
 const APP_KEY = config.token;
 var mongoose = require('mongoose');
 var Config = require ('../model/config');
 
- function getAPI(){
-
-    try{
-
-        console.log('trying to get API');
-        let config =  Config.find({});
-        console.log(config.db.collection('Config'));
-    }
-    catch(error){
-        return Error('error while trying to find investor ' + error.message);
-    }
-}
+//  function getAPI(){
+//
+//     try{
+//
+//         console.log('trying to get API');
+//         let config =  Config.find({});
+//         console.log(config.db.collection('Config'));
+//     }
+//     catch(error){
+//         return Error('error while trying to find investor ' + error.message);
+//     }
+// }
 
 exports.getFileList = async function () {
     getAPI();

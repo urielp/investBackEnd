@@ -7,5 +7,6 @@ var investorController = require('../controller/investors/investor.controller');
 router.post('/addInvestor',investorController.addInvestor)
     .get('/investor/:id',investorController.findInvestor)
     .get('/investors',investorController.getInvestorsList)
-    .get('/investors/:page',investorController.getInvestorsList);
+    .get('/investors/:page',investorController.getInvestorsList)
+    .put('/investor/update/:id',investorController.updateInvestorData);
 module.exports = router;

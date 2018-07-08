@@ -11,7 +11,6 @@ exports.getInvetorsList = async function getInvestorsList(query,page,limit){
         limit
     };
       try{
-
         let investors = await Investors.paginate({},options);
         return investors;
     }
@@ -61,5 +60,35 @@ exports.getInvestorData = async function getInvestor(id){
     }
     catch(error){
         return Error('error while trying to find investor ' + error.message);
+    }
+};
+
+exports.updateInvestorData = async function(investor) {
+    let id = investor.id;
+
+    try {
+        var oldInvestor = await Investors.findById(id);
+    }
+    catch(exception){
+        throw new Error("Error while trying to find investor in db due to : "+exception.message);
+    }
+
+    if(!oldInvestor)
+    {
+        return false;
+    }
+     //oldInvestor.firstName=investor._firstName;
+     //oldInvestor.lastName=investor._firstName;
+     //oldInvestor.address=investor._address;
+     //oldInvestor.amount=expense.amount;
+    // oldExpense.status=expense.status;
+
+    try {
+        console.log(oldInvestor);
+        //let savedoldInvestor = await oldInvestor.save();
+        //return savedoldInvestor;
+    }
+    catch (exception){
+        throw new Error("Error : " + exception.message);
     }
 }
