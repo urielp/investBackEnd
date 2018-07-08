@@ -10,7 +10,7 @@ exports.getInvetorsList = async function getInvestorsList(query,page,limit){
         page,
         limit
     }
-
+    console.log(options);
     try{
 
         let investors = await Investors.paginate({},options);
@@ -24,8 +24,6 @@ exports.getInvetorsList = async function getInvestorsList(query,page,limit){
 
 //add single investor
 exports.addInvestor = async function addInvestor(investor){
-    console.log('Add investor service');
-    console.log(investor);
     let newInvestor = new Investors({
         firstName:investor.firstName,
         lastName:investor.lastName,
@@ -62,10 +60,39 @@ exports.getInvestorData = async function getInvestor(id){
     try{
         console.log("finding single investor by id : " + id);
         let investor = await Investors.findById(id);
-        console.log(investor);
         return investor;
     }
     catch(error){
         return Error('error while trying to find investor ' + error.message);
+    }
+};
+
+exports.updateInvestorData = async function(investor) {
+    let id = investor.id;
+
+    try {
+        var oldInvestor = await Investors.findById(id);
+    }
+    catch(exception){
+        throw new Error("Error while trying to find investor in db due to : "+exception.message);
+    }
+
+    if(!oldInvestor)
+    {
+        return false;
+    }
+     //oldInvestor.firstName=investor._firstName;
+     //oldInvestor.lastName=investor._firstName;
+     //oldInvestor.address=investor._address;
+     //oldInvestor.amount=expense.amount;
+    // oldExpense.status=expense.status;
+
+    try {
+        console.log(oldInvestor);
+        //let savedoldInvestor = await oldInvestor.save();
+        //return savedoldInvestor;
+    }
+    catch (exception){
+        throw new Error("Error : " + exception.message);
     }
 }
