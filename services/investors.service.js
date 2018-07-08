@@ -63,11 +63,11 @@ exports.getInvestorData = async function getInvestor(id){
     }
 };
 
-exports.updateInvestorData = async function(investor) {
-    let id = investor.id;
+exports.updateInvestorComments = async function(id,comments) {
+    let _id = id;
 
     try {
-        var oldInvestor = await Investors.findById(id);
+        var oldInvestor = await Investors.findById(_id);
     }
     catch(exception){
         throw new Error("Error while trying to find investor in db due to : "+exception.message);
@@ -77,16 +77,16 @@ exports.updateInvestorData = async function(investor) {
     {
         return false;
     }
-     //oldInvestor.firstName=investor._firstName;
-     //oldInvestor.lastName=investor._firstName;
-     //oldInvestor.address=investor._address;
-     //oldInvestor.amount=expense.amount;
-    // oldExpense.status=expense.status;
 
     try {
-        console.log(oldInvestor);
-        //let savedoldInvestor = await oldInvestor.save();
-        //return savedoldInvestor;
+
+        oldInvestor.commentsTest = comments;
+
+       // console.log(investor);
+        //Object.assign(oldInvestor, investor);
+
+        let savedInvestor = await oldInvestor.save();
+        return savedInvestor;
     }
     catch (exception){
         throw new Error("Error : " + exception.message);
