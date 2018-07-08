@@ -62,47 +62,48 @@ exports.getInvestorsList = async function getInvestorsList(req,res,next){
     let page = req.params.page ? req.params.page  : 1;
     let limit = req.params.limit ? req.params.limit  : 13;
     try {
-        let expenses = await investorsService.getInvetorsList({},page,limit);
+        let investors = await investorsService.getInvetorsList({},page,limit);
 
-        return res.status(200).json({success:true,data:expenses,message:'Successfully received  list'});
+        return res.status(200).json({success:true,data:investors,message:'Successfully received  list'});
     }
     catch(exception){
         return res.status(400).json({success:false,data:{},message:exception.message});
     }
 }
 
-exports.updateInvestorData =async function updateInvestorData(req,res,next) {
+exports.updateInvestorComments =async function updateInvestorComments(req,res,next) {
     if(!req.params.id){
         return res.status(400).json({status:400,message:'Id must be presented'});
     }
-
-    console.log(req.body);
-    //return res.status(200).json({status:200,message:req.params.id});
     let id = req.params.id;
 
-    let investor = {
-        id:id,
-        firstName:req.body.firstName,
-        lastName:req.body.lastName,
-        cellPhoneNumber:req.body.cellPhoneNumber,
-        officePhoneNumber:req.body.officePhoneNumber,
-        address:req.body.address,
-        email:req.body.email,
-        birthDate:req.body.birthDate,
-        picture:req.body.picture,
-        company:req.body.company,
-        role:req.body.role,
-        //Files:[{name:String}],
-        joinDate:req.body.joinDate,
-        rank:req.body.rank,
-        //investorAssociatedProjects:[Project],
-        //comments:String,
-        commentsTest:req.body.commentsTest,
-        recruiter:req.body.recruiter
+    // let investor = {
+    //     id:id,
+    //     firstName:req.body._firstName,
+    //     lastName:req.body._lastName,
+    //     cellPhoneNumber:req.body._cellPhoneNumber,
+    //     officePhoneNumber:req.body._officePhoneNumber,
+    //     address:req.body._address,
+    //     email:req.body._email,
+    //     birthDate:req.body._birthDate,
+    //     picture:req.body._picture,
+    //     company:req.body._company,
+    //     role:req.body._role,
+    //     //Files:[{name:String}],
+    //     joinDate:req.body._joinDate,
+    //     rank:req.body._rank,
+    //     //investorAssociatedProjects:[Project],
+    //     //comments:String,
+    //     commentsTest:req.body.commentsTest,
+    //     recruiter:req.body._recruiter
+    //
+    // };
 
-    };
+
+
     try{
-        let updatedInvestor = await investorsService.updateInvestorData(investor);
+        let updatedInvestor = await investorsService.updateInvestorComments(id,req.body);
+        return res.status(200).json({success:true,data:updatedInvestor,message:'Successfully updated'});
     }
     catch (e) {
         console.log(e.message);
