@@ -9,5 +9,4 @@ router.post('/addInvestor',investorController.addInvestor)
     .get('/investors',investorController.getInvestorsList)
     .get('/investors/:page',investorController.getInvestorsList)
     .put('/investor/update/:id',investorController.updateInvestorData);
-
 module.exports = router;
