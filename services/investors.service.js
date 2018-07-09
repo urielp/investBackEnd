@@ -5,7 +5,6 @@ _this = this;
 //get list of all investors
 exports.getInvetorsList = async function getInvestorsList(query,page,limit){
     //mongoos paginate settings
-
     var options = {
         page,
         limit

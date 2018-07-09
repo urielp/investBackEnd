@@ -12,6 +12,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var drive = require('./routes/drive');
 var investors = require('./routes/investors');
+var projects = require('./routes/projects');
 var app = express();
 
 //mongo connection
@@ -60,6 +61,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/drive',drive);
 app.use('/investor',investors);
+app.use('/projects',projects);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
