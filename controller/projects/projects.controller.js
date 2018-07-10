@@ -3,7 +3,7 @@ var projectsService = require('../../services/projects.service');
 
 _this=this;
 
-
+//TODO : get projects list - controller
 exports.getProjectsList = async function getProjectsList(req,res,next){
 
     console.log('projects');
@@ -22,14 +22,26 @@ exports.getProjectsList = async function getProjectsList(req,res,next){
 
 };
 
+//TODO : add new project - controller
 exports.addProject = async function addProject(req,res,next) {
-        console.log('add new project');
-      //  let newProject = req.body;
         await projectsService.addNewProject(req.body).then((results) =>{
             return res.status(200).json({success:true,data:results,message:'Yay!'});
-           // return results;
         }).catch((error) =>{
-            return  res.status(200).json({success:false,data:{},message:error.message});;
+            return  res.status(200).json({success:false,data:{},message:error.message});
         });
 
-}
+};
+
+//TODO : get project by id
+exports.getProjectData = async function getProjectData(req,res,next) {
+    console.log('get project');
+
+    await projectsService.getProjectData(req.params.id).then((results) =>{
+        return res.status(200).json({success:true,data:results,message:'project found!'});
+    }).catch((error) =>{
+        return  res.status(200).json({success:false,data:{},message:error.message});;
+    });
+
+};
+
+//TODO: get associated projects to investor

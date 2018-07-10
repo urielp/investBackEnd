@@ -39,10 +39,7 @@ exports.addNewProject = async function addNewProject(newProject){
         status:newProject.status,
         estimatedYield:newProject.estimatedYield
     });
-   console.log(project);
     let createdProject  = await project.save().then((result) => {
-        console.log("after saving");
-        console.log(result);
         return result;
     }).catch((error) =>{
         return error;
@@ -51,7 +48,18 @@ exports.addNewProject = async function addNewProject(newProject){
 };
 
 
-// TODO : add ability to get projects list by investor
 //TODO : get project details by ID
+exports.getProjectData = async function getProject(id){
+
+        let project = await Projects.findById(id).then((result) => {
+            return result;
+        }).catch((error) => {
+            return Error('error while trying to find project ' + error.message);
+        });
+        return project;
+};
+
+// TODO : add ability to get projects list by investor
+
 // TODO : update existing project
 // TODO :delete existing project
