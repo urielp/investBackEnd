@@ -29,7 +29,16 @@ exports.addProject = async function addProject(req,res,next) {
             return res.status(200).json({success:true,data:results,message:'Yay!'});
            // return results;
         }).catch((error) =>{
-            return  res.status(200).json({success:false,data:{},message:error.message});;
+            return  res.status(500).json({success:false,data:{},message:error.message});
         });
 
 }
+
+exports.getProjectById = async function getProjectById(req,res,next) {
+    console.log('get project by id');
+    await projectsService.getProjectById(req.params.id).then((results) => {
+        return res.status(200).json({success:true,data:results,message:'project was found'});
+    }).catch((error) =>{
+        return  res.status(500).json({success:false,data:{},message:error.message});
+    })
+};

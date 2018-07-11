@@ -53,5 +53,17 @@ exports.addNewProject = async function addNewProject(newProject){
 
 // TODO : add ability to get projects list by investor
 //TODO : get project details by ID
+exports.getProjectById = async function getProjectById(id) {
+    console.log('get project by id - service');
+    let requestedProject = await Projects.findById(id).then((results) => {
+        console.log('found project!');
+        console.log(results);
+        return results;
+    }).catch((error) => {
+        console.log(error.message);
+        return error;
+    });
+    return requestedProject;
+};
 // TODO : update existing project
 // TODO :delete existing project
