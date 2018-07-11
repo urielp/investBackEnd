@@ -27,7 +27,6 @@ exports.projectsList = async function projectsList(page,limit){
 // TODO : add new project to DB
 exports.addNewProject = async function addNewProject(newProject){
 
-    console.log('add new project - service')
     let project = new Projects({
         projectName:newProject.projectName,
         address:newProject.address,
@@ -39,6 +38,7 @@ exports.addNewProject = async function addNewProject(newProject){
         status:newProject.status,
         estimatedYield:newProject.estimatedYield
     });
+
     let createdProject  = await project.save().then((result) => {
         return result;
     }).catch((error) =>{
@@ -53,11 +53,8 @@ exports.addNewProject = async function addNewProject(newProject){
 exports.getProjectById = async function getProjectById(id) {
     console.log('get project by id - service');
     let requestedProject = await Projects.findById(id).then((results) => {
-        console.log('found project!');
-        console.log(results);
         return results;
     }).catch((error) => {
-        console.log(error.message);
         return error;
     });
     return requestedProject;
