@@ -39,12 +39,6 @@ exports.getProjectById = async function getProjectById(req,res,next) {
         return  res.status(500).json({success:false,data:{},message:error.message});
     })
 };
-
-            return  res.status(200).json({success:false,data:{},message:error.message});
-        });
-
-};
-
 //TODO : get project by id
 // exports.getProjectData = async function getProjectData(req,res,next) {
 //     console.log('get project');
