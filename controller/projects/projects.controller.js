@@ -27,21 +27,35 @@ exports.addProject = async function addProject(req,res,next) {
         await projectsService.addNewProject(req.body).then((results) =>{
             return res.status(200).json({success:true,data:results,message:'Yay!'});
         }).catch((error) =>{
+            return  res.status(500).json({success:false,data:{},message:error.message});
+        });
+}
+
+exports.getProjectById = async function getProjectById(req,res,next) {
+    console.log('get project by id');
+    await projectsService.getProjectById(req.params.id).then((results) => {
+        return res.status(200).json({success:true,data:results,message:'project was found'});
+    }).catch((error) =>{
+        return  res.status(500).json({success:false,data:{},message:error.message});
+    })
+};
+
             return  res.status(200).json({success:false,data:{},message:error.message});
         });
 
 };
 
 //TODO : get project by id
-exports.getProjectData = async function getProjectData(req,res,next) {
-    console.log('get project');
+// exports.getProjectData = async function getProjectData(req,res,next) {
+//     console.log('get project');
 
-    await projectsService.getProjectData(req.params.id).then((results) =>{
-        return res.status(200).json({success:true,data:results,message:'project found!'});
-    }).catch((error) =>{
-        return  res.status(200).json({success:false,data:{},message:error.message});;
-    });
+//     await projectsService.getProjectData(req.params.id).then((results) =>{
+//         return res.status(200).json({success:true,data:results,message:'project found!'});
+//     }).catch((error) =>{
+//         return  res.status(200).json({success:false,data:{},message:error.message});;
+//     });
 
-};
+// };
 
 //TODO: get associated projects to investor
+
