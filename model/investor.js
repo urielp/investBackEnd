@@ -16,7 +16,7 @@ var InvestorSchema =new mongoose.Schema({
     //Files:[{name:String}],
     joinDate:Date,
     rank:Number,
-    //investorAssociatedProjects:[Project],
+    investorAssociatedProjects:[String],
     //comments:String,
     commentsTest:[{comment:String,name:String,date:Date}],
     recruiter:String
