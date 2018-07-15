@@ -70,5 +70,23 @@ exports.getProjectById = async function getProjectById(id) {
 // };
 
 // TODO : add ability to get projects list by investor
+
+exports.getAssociateddProjects = async function getAssociatedProjects(projects){
+    let aP = new Array();
+    projects.map((value) =>{
+        console.log(value);
+      aP.push(mongoose.Types.ObjectId(value));
+     });
+    let results = await Projects.find({
+        '_id':{
+            $in:aP
+        }
+    }).then((results) =>{
+        return {data:results};
+    }).catch((error) => {
+            return {error:error.message}
+    });
+        return results;
+}
 // TODO : update existing project
 // TODO :delete existing project

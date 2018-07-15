@@ -4,6 +4,7 @@ var projectsController = require('../controller/projects/projects.controller');
 
 router.get('/',projectsController.getProjectsList)
     .get('/projectDetails/:id',projectsController.getProjectById)
+    .get('/associatedProjects/',projectsController.getAssociateddProjects)
     .post('/addProject',projectsController.addProject);
 
   //  .post('/addProject',projectsController.addProject)
