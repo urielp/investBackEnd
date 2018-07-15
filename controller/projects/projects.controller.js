@@ -54,13 +54,12 @@ exports.getProjectById = async function getProjectById(req,res,next) {
 //TODO: get associated projects to investor
 exports.getAssociateddProjects = async function getAssociatedProjects(req,res,next){
     await projectsService.getAssociateddProjects(req.query.array).then((results) =>{
-
         console.log(results);
         if(results.error){
             return res.status(500).json({success:false,data:{},message:'Error'});
         }
         else{
-            return res.status(200).json({success:true,data:results.data,message:'Error'});
+            return res.status(200).json({success:true,data:results.data,message:'Found Data'});
         }
 
     });

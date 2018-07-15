@@ -35,7 +35,7 @@ exports.addInvestor = async function addInvestor(investor){
         //investorFiles:[{name:String}],
         joinDate:investor.joinDate,
         rank:investor.rank,
-        //investorAssociatedProjects:[Project],
+        investorAssociatedProjects:investor.investorAssociatedProjects,
         comments:investor.comment,
         commentsTest:investor.commentsTest,
         recuriter:investor.recruiter
