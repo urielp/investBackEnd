@@ -24,7 +24,7 @@ exports.projectsList = async function projectsList(page,limit){
     }
 };
 
-// TODO : add new project to DB
+
 exports.addNewProject = async function addNewProject(newProject){
 
     let project = new Projects({
@@ -48,8 +48,6 @@ exports.addNewProject = async function addNewProject(newProject){
 };
 
 
-//TODO : get project details by ID
-
 exports.getProjectById = async function getProjectById(id) {
     console.log('get project by id - service');
     let requestedProject = await Projects.findById(id).then((results) => {
@@ -69,12 +67,10 @@ exports.getProjectById = async function getProjectById(id) {
 //         return project;
 // };
 
-// TODO : add ability to get projects list by investor
 
 exports.getAssociateddProjects = async function getAssociatedProjects(projects){
     let aP = new Array();
     projects.map((value) =>{
-        console.log(value);
       aP.push(mongoose.Types.ObjectId(value));
      });
     let results = await Projects.find({
