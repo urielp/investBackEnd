@@ -22,7 +22,7 @@ exports.getProjectsList = async function getProjectsList(req,res,next){
 
 };
 
-//TODO : add new project - controller
+
 exports.addProject = async function addProject(req,res,next) {
         await projectsService.addNewProject(req.body).then((results) =>{
             return res.status(200).json({success:true,data:results,message:'Yay!'});
@@ -39,21 +39,11 @@ exports.getProjectById = async function getProjectById(req,res,next) {
         return  res.status(500).json({success:false,data:{},message:error.message});
     })
 };
-//TODO : get project by id
-// exports.getProjectData = async function getProjectData(req,res,next) {
-//     console.log('get project');
 
-//     await projectsService.getProjectData(req.params.id).then((results) =>{
-//         return res.status(200).json({success:true,data:results,message:'project found!'});
-//     }).catch((error) =>{
-//         return  res.status(200).json({success:false,data:{},message:error.message});;
-//     });
 
-// };
-
-//TODO: get associated projects to investor
+// get a list of projects that are associated
 exports.getAssociateddProjects = async function getAssociatedProjects(req,res,next){
-    await projectsService.getAssociateddProjects(req.query.array).then((results) =>{
+    await projectsService.getAssociateddProjects(req.query.projects).then((results) =>{
         console.log(results);
         if(results.error){
             return res.status(500).json({success:false,data:{},message:'Error'});
