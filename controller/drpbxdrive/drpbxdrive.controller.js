@@ -34,7 +34,7 @@ exports.uploadFile =  async function uploadFile(req,res,next){
     //  form.on('file', function (name, file){
     //      console.log('Uploaded ' + file.name);
     //  });
-            console.log(req.body);
+
           goolgeDriveService.uploadFile('excelNewTransactions.xlsx',data,function(success) {
               return res.status(200).json({success: true, data: success, message: 'file was saved successfully'});
           })
@@ -44,7 +44,7 @@ exports.uploadFile =  async function uploadFile(req,res,next){
 };
 
 exports.downloadFile = async function downloadFile(req,res,next){
-            console.log('Download - controller');
+
             goolgeDriveService.downloadFile('text.text',function(success) {
              return res.status(200).json({success: true, data: success, message: 'file downloaded successfully'});
          })
