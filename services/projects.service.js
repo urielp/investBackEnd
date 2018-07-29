@@ -1,4 +1,5 @@
 var Projects = require('../model/project.model');
+var Investor = require('../model/investor');
 var mongoose = require('mongoose');
 
 
@@ -10,12 +11,12 @@ exports.projectsList = async function projectsList(page,limit){
         limit
     };
     try{
-        console.log('to DB');
+
       let projects = await Projects.paginate({},options).then((res) =>{
-          console.log(res);
+
           return res;
       });
-        console.log(projects);
+
         return projects;
     }
 
@@ -49,7 +50,7 @@ exports.addNewProject = async function addNewProject(newProject){
 
 
 exports.getProjectById = async function getProjectById(id) {
-    console.log('get project by id - service');
+
     let requestedProject = await Projects.findById(id).then((results) => {
         return results;
     }).catch((error) => {
@@ -68,9 +69,18 @@ exports.getProjectById = async function getProjectById(id) {
 // };
 
 
-exports.getAssociateddProjects = async function getAssociatedProjects(projects){
+exports.getAssociateddProjects = async function getAssociatedProjects(projects,id){
+    let investor;
+    try{
+         investor = await Investor.findById(id);
+       // return investor;
+    }
+    catch(error){
+        return Error('error while trying to find investor ' + error.message);
+    }
+
     let aP = new Array();
-    projects.map((value) =>{
+    investor.investorAssociatedProjects.map((value) =>{
       aP.push(mongoose.Types.ObjectId(value));
      });
     let results = await Projects.find({

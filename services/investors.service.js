@@ -64,7 +64,6 @@ exports.getInvestorData = async function getInvestor(id){
 
 exports.updateInvestorComments = async function(id,comments) {
     let _id = id;
-
     try {
         var oldInvestor = await Investors.findById(_id);
     }
