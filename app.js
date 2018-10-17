@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var bluebird = require('bluebird');
 var mongoose = require('mongoose');
-//var config = require('./localConfig/localConfig');
-var config = require('./config/globalConf');
+var config = require('./localConfig/localConfig');
+//var config = require('./config/globalConf');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var drive = require('./routes/drive');
@@ -69,6 +69,7 @@ app.use(bodyParser.raw({type:'*/*'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', index);
 app.use('/users', users);

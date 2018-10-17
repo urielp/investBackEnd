@@ -48,8 +48,7 @@ exports.addInvestor = async function addInvestor(investor){
     catch (e) {
         throw new Error('Error while trying to save investor information to the data base' + e.message);
     }
-};
-exports.updateInvestor = async function exports(id,data,io){
+};exports.updateInvestor = async function exports(id,data,io){
 
 
    let  results = Investors.findById(id,(err,investor) =>{
@@ -79,6 +78,7 @@ exports.updateInvestor = async function exports(id,data,io){
    return results;
 };
 
+
 //get single investor information
 exports.getInvestorData = async function getInvestor(id){
     try{
@@ -90,6 +90,7 @@ exports.getInvestorData = async function getInvestor(id){
     }
 };
 
+// adding/updating comments of a user
 exports.updateInvestorComments = async function(id,comments) {
     let _id = id;
     try {
@@ -98,19 +99,13 @@ exports.updateInvestorComments = async function(id,comments) {
     catch(exception){
         throw new Error("Error while trying to find investor in db due to : "+exception.message);
     }
-
     if(!oldInvestor)
     {
         return false;
     }
-
     try {
 
         oldInvestor.commentsTest = comments;
-
-       // console.log(investor);
-        //Object.assign(oldInvestor, investor);
-
         let savedInvestor = await oldInvestor.save();
         return savedInvestor;
     }

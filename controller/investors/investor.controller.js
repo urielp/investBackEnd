@@ -30,9 +30,8 @@ exports.addInvestor = async function addInvestor(req,res,next){
 
 exports.updateInvestor = async function updateInvestor(req,res){
 try{
-
     let updatedInvestor = await investorsService.updateInvestor(req.params.id,req.body,req.app.get('io'));
-
+     console.log(updatedInvestor);
    if(updatedInvestor) {
 
        return res.status(200)
