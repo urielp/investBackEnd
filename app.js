@@ -14,7 +14,12 @@ var users = require('./routes/users');
 var drive = require('./routes/drive');
 var investors = require('./routes/investors');
 var projects = require('./routes/projects');
+var socket_io = require('socket.io')();
 var app = express();
+app.socktIO =socket_io;
+
+
+
 
 //mongo connection
 mongoose.Promise=bluebird;
@@ -45,10 +50,17 @@ app.use(function(req,res,next) {
     next();
 
 });
+app.socktIO.on('connection',(socket)=>{
+    console.log('user connected');
 
+});
+app.socktIO.on('disconnect', function() {
+    console.log('user disconnected');
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('io',socket_io);
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));

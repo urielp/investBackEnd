@@ -14,3 +14,6 @@ localConfig
 
 #DB folder
 DB
+
+#client folder
+/client
