@@ -113,10 +113,10 @@ exports.updateInvestorComments = async function(id,comments) {
     }
 
 };
-}
+
 
 //TODO : update user(investor) details
 exports.updateInvestorData = async function(id,data){
 
     currentInvestorData = await Investors.findById(id).then()
-}
+};
