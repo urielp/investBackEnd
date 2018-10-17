@@ -6,8 +6,6 @@ _this=this
 
 //add new investor to db(controller
 exports.addInvestor = async function addInvestor(req,res,next){
-    console.log('Add investor controller');
-    console.log(req.body);
     let newInvestor = req.body;
     try{
         let createdInvestor = await investorsService.addInvestor(newInvestor);
@@ -28,13 +26,38 @@ exports.addInvestor = async function addInvestor(req,res,next){
                 message:'Somthing went wrong' + error.message
             })
     }
+};
+
+exports.updateInvestor = async function updateInvestor(req,res){
+try{
+
+    let updatedInvestor = await investorsService.updateInvestor(req.body);
+   console.log(updatedInvestor);
+   if(updatedInvestor) {
+
+       return res.status(200)
+           .json({
+               success: true,
+               data: updatedInvestor,
+               message: 'Investor was updated'
+           })
+   }
+   else {
+       return res.status(200)
+           .json({
+               success: false,
+               data: {},
+               message: 'Investor was not found'
+           })
+   }
 }
-
-
+catch (e) {
+    
+}
+};
 //get investor data
 exports.findInvestor=async function findInvestor(req,res,next){
     try{
-        console.log("Parameters from request : " + req.params.id)
         let investorResult = await investorsService.getInvestorData(req.params.id);
         return res.status(200)
             .json({
@@ -57,7 +80,6 @@ exports.findInvestor=async function findInvestor(req,res,next){
 }
 
 //get investors list
-
 exports.getInvestorsList = async function getInvestorsList(req,res,next){
     let page = req.params.page ? req.params.page  : 1;
     let limit = req.params.limit ? req.params.limit  : 13;
