@@ -48,11 +48,10 @@ exports.addInvestor = async function addInvestor(investor){
     catch (e) {
         throw new Error('Error while trying to save investor information to the data base' + e.message);
     }
-};
-exports.updateInvestor = async function exports(data){
+};exports.updateInvestor = async function exports(id,data,io){
 
-     console.log('about to update investor');
-   let  results = Investors.findById(data._id,(err,investor) =>{
+
+   let  results = Investors.findById(id,(err,investor) =>{
         if(err){
             console.log(err);
             return {success:false,error:err};
@@ -71,12 +70,14 @@ exports.updateInvestor = async function exports(data){
             else {
 
                 console.log('saved');
+                io.emit('update','בוצע עדכון לנתונים\nייתכן ויידרש רענון לדף');
                 return {success:false,data:investor}
             }
         })
     });
    return results;
 };
+
 
 //get single investor information
 exports.getInvestorData = async function getInvestor(id){
@@ -111,12 +112,4 @@ exports.updateInvestorComments = async function(id,comments) {
     catch (exception){
         throw new Error("Error : " + exception.message);
     }
-
-};
-
-
-//TODO : update user(investor) details
-exports.updateInvestorData = async function(id,data){
-
-    currentInvestorData = await Investors.findById(id).then()
 };
