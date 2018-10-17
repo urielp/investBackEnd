@@ -23,7 +23,8 @@
     "morgan": "~1.9.0",
     "opn": "^5.3.0",
     "path": "^0.12.7",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {
     "http": "0.0.0",
