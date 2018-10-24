@@ -7,6 +7,7 @@ _this=this
 //add new investor to db(controller
 exports.addInvestor = async function addInvestor(req,res,next){
     let newInvestor = req.body;
+    console.log(req.body);
     try{
         let createdInvestor = await investorsService.addInvestor(newInvestor);
         return res.status(200)
@@ -58,6 +59,7 @@ catch (e) {
 exports.findInvestor=async function findInvestor(req,res,next){
     try{
         let investorResult = await investorsService.getInvestorData(req.params.id);
+        console.log(investorResult);
         return res.status(200)
             .json({
                 success:true,

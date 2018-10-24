@@ -21,25 +21,28 @@ exports.getInvetorsList = async function getInvestorsList(query,page,limit){
 
 //add single investor
 exports.addInvestor = async function addInvestor(investor){
+    console.log(investor);
     let newInvestor = new Investors({
+        userName:investor.userName,
         firstName:investor.firstName,
         lastName:investor.lastName,
-        cellPhoneNumber:investor.cellPhone,
-        officePhoneNumber:investor.officePhone,
+        cellPhoneNumber:investor.cellPhoneNumber,
+        officePhoneNumber:investor.officePhoneNumber,
         address:investor.address,
+        city:investor.city,
         email:investor.email,
         birthDate:investor.birthDate,
-        picture:investor.picture,
         company:investor.company,
         role:investor.role,
-        //investorFiles:[{name:String}],
         joinDate:investor.joinDate,
         rank:investor.rank,
         investorAssociatedProjects:investor.investorAssociatedProjects,
-        comments:investor.comment,
-        commentsTest:investor.commentsTest,
-        recuriter:investor.recruiter
-    })
+        commentsTest:[],//investor.commentsTest,
+        recruiter:investor.recruiter,
+        picture:investor.picture,
+        //investorFiles:[{name:String}],
+        //comments:investor.comment,
+    });
 
     try {
         let savedInvestor = await newInvestor.save();
