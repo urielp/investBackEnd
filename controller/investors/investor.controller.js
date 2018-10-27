@@ -1,7 +1,7 @@
 var investorsService = require('../../services/investors.service');
 
 
-_this=this
+_this=this;
 
 
 //add new investor to db(controller
@@ -82,7 +82,9 @@ exports.findInvestor=async function findInvestor(req,res,next){
 
 //get investors list
 exports.getInvestorsList = async function getInvestorsList(req,res,next){
-    let page = req.params.page ? req.params.page  : 1;
+    console.log(req.query.page);
+    let page = req.query.page ? req.query.page  : 1;
+    //let page = req.params.page ? req.params.page  : 1;
     let limit = req.params.limit ? req.params.limit  : 13;
     try {
         let investors = await investorsService.getInvetorsList({},page,limit);
